@@ -3,6 +3,10 @@
 
 # Dependencies
 node_modules
+elm-stuff
+
+# Elm generated files
+repl-temp-*
 
 # Dist files
 dist
