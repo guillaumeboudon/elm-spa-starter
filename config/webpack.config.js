@@ -11,6 +11,24 @@ module.exports = {
     filename: 'bundle.js',
     path: distPath
   },
+  module: {
+    noParse: /\.elm$/,
+    rules: [
+      {
+        test: /\.elm$/,
+        exclude: [/elm-stuff/, /node_modules/],
+        use: [
+          { loader: 'elm-webpack-loader',
+            options: {
+              debug: true,
+              forceWatch: true,
+              verbose: true
+            }
+          }
+        ]
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(srcPath, 'html/main.html')
