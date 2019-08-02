@@ -40,23 +40,51 @@ const pluginHtmlWebpackPlugin = new HtmlWebpackPlugin({
 
 
 /* ============================================================================
+ * > DEVELOPMENT
+ * ============================================================================
+ */
+const configDev = (mode) => ({
+  entry: entry,
+  output: output(mode),
+  devServer: {
+    contentBase: distPath,
+  },
+  module: {
+    noParse: /\.elm$/,
+    rules: [
+      moduleRuleElm(mode)
+    ]
+  },
+  plugins: [
+    pluginHtmlWebpackPlugin
+  ]
+})
+
+
+/* ============================================================================
+ * > PRODUCTION
+ * ============================================================================
+ */
+const configProd = (mode) => ({
+  entry: entry,
+  output: output(mode),
+  module: {
+    noParse: /\.elm$/,
+    rules: [
+      moduleRuleElm(mode)
+    ]
+  },
+  plugins: [
+    pluginHtmlWebpackPlugin
+  ]
+})
+
+
+/* ============================================================================
  * > MAIN
  * ============================================================================
  */
 module.exports = (env, argv) => {
   const mode = argv.mode
-
-  return {
-    entry: entry,
-    output: output(mode),
-    module: {
-      noParse: /\.elm$/,
-      rules: [
-        moduleRuleElm(mode)
-      ]
-    },
-    plugins: [
-      pluginHtmlWebpackPlugin
-    ]
-  }
+  return isDev(mode) ? configDev(mode) : configProd(mode)
 }
