@@ -1,0 +1,12 @@
+{
+  "name": "elm-spa-starter",
+  "version": "0.0.1",
+  "description": "A boilerplate for production ready Elm SPA",
+  "keywords": [],
+  "author": "Guillaume BOUDON",
+  "license": "MIT",
+  "private": true,
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
