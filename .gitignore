@@ -2,11 +2,12 @@
 .DS_Store
 
 # Dependencies
-node_modules
-elm-stuff
+node_modules/
+yarn-error.log
+elm-stuff/
 
 # Elm generated files
 repl-temp-*
 
 # Dist files
-dist
+dist/
