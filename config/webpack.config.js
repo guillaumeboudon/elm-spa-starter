@@ -34,6 +34,15 @@ const moduleRuleElm = (mode) => ({
   ]
 })
 
+const moduleRuleCss = {
+  test: /\.scss$/,
+  use: [
+    'style-loader',
+    'css-loader',
+    'sass-loader'
+  ]
+}
+
 const pluginHtmlWebpackPlugin = new HtmlWebpackPlugin({
   template: path.join(srcPath, 'html/main.html')
 })
@@ -52,7 +61,8 @@ const configDev = (mode) => ({
   module: {
     noParse: /\.elm$/,
     rules: [
-      moduleRuleElm(mode)
+      moduleRuleElm(mode),
+      moduleRuleCss
     ]
   },
   plugins: [
@@ -71,7 +81,8 @@ const configProd = (mode) => ({
   module: {
     noParse: /\.elm$/,
     rules: [
-      moduleRuleElm(mode)
+      moduleRuleElm(mode),
+      moduleRuleCss
     ]
   },
   plugins: [
