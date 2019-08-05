@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const rootPath = path.resolve(__dirname, '..')
 const srcPath  = path.join(rootPath, 'src')
@@ -34,18 +35,30 @@ const moduleRuleElm = (mode) => ({
   ]
 })
 
-const moduleRuleCss = {
-  test: /\.scss$/,
+const moduleRuleCss = (mode) => ({
+  test: /\.(scss|css)$/,
   use: [
-    'style-loader',
+    {
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: isDev(mode),
+      },
+    },
     'css-loader',
     'sass-loader'
   ]
-}
+})
 
 const pluginHtmlWebpackPlugin = new HtmlWebpackPlugin({
   template: path.join(srcPath, 'html/main.html')
 })
+
+const pluginMiniCssExtractPlugin = (mode) => {
+  return new MiniCssExtractPlugin({
+    filename: isDev(mode) ? '[name].css' : '[name]-[hash].css',
+    chunkFilename: isDev(mode) ? '[id].css' : '[id]-[hash].css',
+  })
+}
 
 
 /* ============================================================================
@@ -62,11 +75,12 @@ const configDev = (mode) => ({
     noParse: /\.elm$/,
     rules: [
       moduleRuleElm(mode),
-      moduleRuleCss
+      moduleRuleCss(mode)
     ]
   },
   plugins: [
-    pluginHtmlWebpackPlugin
+    pluginHtmlWebpackPlugin,
+    pluginMiniCssExtractPlugin(mode)
   ]
 })
 
@@ -82,11 +96,12 @@ const configProd = (mode) => ({
     noParse: /\.elm$/,
     rules: [
       moduleRuleElm(mode),
-      moduleRuleCss
+      moduleRuleCss(mode)
     ]
   },
   plugins: [
-    pluginHtmlWebpackPlugin
+    pluginHtmlWebpackPlugin,
+    pluginMiniCssExtractPlugin(mode)
   ]
 })
 
