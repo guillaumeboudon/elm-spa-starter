@@ -10,6 +10,9 @@
     "build": "rimraf dist && NODE_ENV=production webpack",
     "start": "NODE_ENV=development webpack-dev-server"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^9.6.1",
