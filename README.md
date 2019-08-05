@@ -6,15 +6,15 @@ A Webpack based boilerplate to build a production ready Elm SPA.
 
 :warning: Actually a roadmap:
 
-- [ ] Hot reloading
-- [ ] Sass support
-- [ ] CSS autoprefixing
+- [x] Hot reloading
+- [x] Sass support
+- [x] CSS autoprefixing
 - [ ] Local SSL
 - [ ] ES6 support
 - [ ] Typescript support
 - [ ] ESLint
-- [ ] Minifying/bundling for development
-- [ ] Basic starter elm app
+- [ ] Minifying/bundling for production
+- [x] Basic starter elm app
 - [ ] elm-test
 
 ## Structure
@@ -33,22 +33,19 @@ A Webpack based boilerplate to build a production ready Elm SPA.
 │   ├── elm
 │   │   └── Main.elm
 │   ├── css
-│   │   └── main.scss
-│   ├── html
-│   │   └── main.html
-│   ├── js
-│   │   └── main.scss
-│   └── index.js
+│   │   └── styles.scss
+│   ├── index.html
+│   ├── main.js
+│   └── main.scss
 ├── tests
 │   └── Tests.elm
-├── config
-│   └── webpack.config.js
 ├── scripts
 │   └── myscript
 ├── .gitignore
 ├── README.md
 ├── elm.json
-└── package.json
+├── package.json
+└── webpack.config.js
 ```
 
 ## Install
